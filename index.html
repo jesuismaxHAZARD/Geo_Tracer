@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="/css/connexion.css">
+    <link rel="stylesheet" href="css/connexion.css">
     <script src="https://kit.fontawesome.com/8b86e3ab1a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <form id="loginForm">
         <header>
             <nav>
-               <a href="#"><img src="/photos/geo tracer-3.png" alt="Logo" class="logo"></a>
+               <a href="#"><img src="photos/geo tracer-3.png" alt="Logo" class="logo"></a>
             </nav>
         </header>
         
@@ -25,7 +25,7 @@
         </div>
 
         <p class="inscription">Vous n'avez pas de compte ? 
-            <a href="/html/inscription.html">Inscrivez-vous</a>
+            <a href="index.html">Inscrivez-vous</a>
         </p>
         
         <div align="center">
@@ -41,7 +41,7 @@
 
     let formData = new FormData(this);
 
-    fetch("/php/login.php", {
+    fetch("php/login.php", {
         method: "POST",
         body: formData
     })
