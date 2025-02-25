@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^$ /Geo_Tracer-main/connexion.html [L]
+RewriteRule ^$ /Geo_Tracer-main/index.html [L]
