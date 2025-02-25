@@ -12,7 +12,7 @@
     <form id="loginForm">
         <header>
             <nav>
-               <a href="#"><img src="photos/geo tracer-3.png" alt="Logo" class="logo"></a>
+               <a href="#"><img src="css/photos/geo-tracer-3.png" alt="Logo" class="logo"></a>
             </nav>
         </header>
         
@@ -25,7 +25,7 @@
         </div>
 
         <p class="inscription">Vous n'avez pas de compte ? 
-            <a href="index.html">Inscrivez-vous</a>
+            <a href="html/inscription.html">Inscrivez-vous</a>
         </p>
         
         <div align="center">
@@ -51,7 +51,7 @@
         try {
             let json = JSON.parse(data); // Essaye de parser JSON
             if (json.success) {
-                window.location.href = "/html/acceuil.html";
+                window.location.href = "/GEO_TRACER-MAIN/html/acceuil.html";
             } else {
                 document.getElementById("error-message").textContent = json.message;
                 document.getElementById("error-message").style.display = "block";
