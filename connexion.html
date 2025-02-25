@@ -5,35 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="connexion.css">
+    <link rel="stylesheet" href="/GEO_TRACER-MAIN/css/connexion.css">
     <script src="https://kit.fontawesome.com/8b86e3ab1a.js" crossorigin="anonymous"></script>
+</head>
 <body>
-    <form>
+    <form id="loginForm">
         <header>
             <nav>
-               <a href="#"><img src="geo tracer-3.png" alt=""class="logo" srcset=""></a>
-              
-   
+               <a href="#"><img src="/GEO_TRACER-MAIN/photos/geo tracer-3.png" alt="Logo" class="logo"></a>
             </nav>
-   
-         </header>
-        <h1>Se Connecter</h1> 
+        </header>
         
-        </div>
-        <p class="choose-email"> utilisez votre adresse e-mail</p>
+        <h1>Se Connecter</h1> 
+        <p class="choose-email">Utilisez votre adresse e-mail</p>
 
         <div class="input">
-           
-            <input type="email"placeholder="exemple.xx@gmail.com">
-            <input type="password"placeholder="Mot de passe">
+            <input type="email" id="email" name="email" placeholder="exemple.xx@gmail.com" required>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
         </div>
-        <p class="inscription "> Vous n'avez pas de compte?<a href="http://127.0.0.1:5500/inscription.html">inscrivez-vous</a></p>
+
+        <p class="inscription">Vous n'avez pas de compte ? 
+            <a href="/GEO_TRACER-MAIN/html/inscription.html">Inscrivez-vous</a>
+        </p>
         
         <div align="center">
             <button type="submit">Se connecter</button>
-            
         </div>
+
+        <p id="error-message" style="color: red; text-align: center; display: none;">Mail ou mot de passe erroné.</p>
     </form>
-    
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("/GEO_TRACER-MAIN/php/login.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text()) // Change de JSON à TEXT pour voir ce qui est retourné
+    .then(data => {
+        console.log("Réponse brute :", data); // Affiche directement la réponse
+        try {
+            let json = JSON.parse(data); // Essaye de parser JSON
+            if (json.success) {
+                window.location.href = "/GEO_TRACER-MAIN/html/acceuil.html";
+            } else {
+                document.getElementById("error-message").textContent = json.message;
+                document.getElementById("error-message").style.display = "block";
+            }
+        } catch (error) {
+            console.error("Erreur de parsing JSON :", error);
+            console.error("Réponse brute reçue :", data);
+        }
+    })
+    .catch(error => console.error("Erreur Fetch :", error));
+});
+    </script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="/GEO_TRACER-MAIN/css/inscription.css">
+</head>
+<body>
+    <div class="formulaire">
+        <div class="barre"></div><br>
+        <form id="inscriptionForm" action="/GEO_TRACER-MAIN/php/register.php" method="POST">
+            <header>
+                <nav>
+                    <a href="#"><img src="/GEO_TRACER-MAIN/photos/geo tracer-3.png" alt="Logo" class="logo"></a>
+                </nav>
+            </header> 
+
+            <h2>Inscription</h2>
+
+            <div class="form1">
+                <label for="email">E-mail <span class="star">*</span></label><br>
+                <input type="email" name="email" id="email" placeholder="Votre email" required class="input"><br><br>
+
+                <label for="pseudo">Pseudo <span class="star">*</span></label><br>
+                <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" required class="input"><br><br>
+
+                <label for="name">Nom complet <span class="star">*</span></label><br>
+                <input type="text" name="name" id="name" placeholder="Votre nom et prénom" required class="input"><br><br>
+
+                <label for="password">Mot de passe <span class="star">*</span></label><br>
+                <input type="password" name="password" id="password" placeholder="Votre mot de passe" required class="input"><br><br>
+
+                <p>Déjà client ? <a href="/GEO_TRACER-MAIN/connexion.html">Connectez-vous</a></p>
+                
+                <div class="button">
+                    <input type="submit" name="submit" value="S'inscrire">
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêche l'envoi immédiat du formulaire
+
+            fetch("/GEO_TRACER-MAIN/php/register.php", {
+                method: "POST",
+                body: new FormData(this)
+            })
+            .then(response => response.text())  // Récupère la réponse sous forme de texte brut
+            .then(data => {
+                console.log("Réponse brute du serveur:", data);  // Affiche la réponse brute du serveur
+                alert(data);  // Affiche simplement la réponse du serveur dans un popup
+            })
+            .catch(error => {
+                console.error("Erreur:", error);
+                alert("Une erreur est survenue. Veuillez réessayer.");
+            });
+        });
+    </script>
+</body>
+</html>
