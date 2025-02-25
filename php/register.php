@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     // Redirection vers la page d'accueil après une inscription réussie
-    header('Location: /GEO_TRACER-MAIN/html/acceuil.html');
+    header('Location: /html/acceuil.html');
     exit;
 }
 ?>
